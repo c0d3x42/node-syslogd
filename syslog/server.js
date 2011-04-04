@@ -24,6 +24,7 @@ Server.prototype.start = function( args, started_cb )
     console.log( "Parsed: " + inspect( msg ) );
     console.log( "received facility: " + msg.facility() + " level: " + msg.level() );
     console.log( "received message: " + msg.message() );
+    console.log( "date: " + inspect( msg.date() ) );
     args.message( msg );
   });
 

@@ -25,6 +25,15 @@ SyslogMessage.prototype.level = function()
   return this.priority.charAt( 1 );
 };
 
+SyslogMessage.prototype.time = function()
+{
+  return this.time;
+};
+
+SyslogMessage.prototype.date = function()
+{
+  return Date.parse( this.time );
+};
 
 
 var Parser = function Parser()
