@@ -13,7 +13,18 @@ function SyslogMessage( options )
 SyslogMessage.prototype.message = function()
 {
   return this.msg;
-}
+};
+
+SyslogMessage.prototype.facility = function()
+{
+  return this.priority.charAt( 0 );
+};
+
+SyslogMessage.prototype.facility = function()
+{
+  return this.priority.charAt( 1 );
+};
+
 
 
 var Parser = function Parser()

@@ -20,9 +20,10 @@ Server.prototype.start = function( args, started_cb )
 
   srv.on( 'message', function( msg, rinfo )
   {
-    var parsed = parser.parseit( msg );
-    console.log( "Parsed: " + inspect( parsed ) );
-    console.log( "received message: " + parsed.message() );
+    var msg = parser.parseit( msg );
+    console.log( "Parsed: " + inspect( msg ) );
+    console.log( "received facility: " + msg.facility() + " level: " + msg.level() );
+    console.log( "received message: " + msg.message() );
     args.message( msg );
   });
 
