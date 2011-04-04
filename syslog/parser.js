@@ -20,7 +20,7 @@ SyslogMessage.prototype.facility = function()
   return this.priority.charAt( 0 );
 };
 
-SyslogMessage.prototype.facility = function()
+SyslogMessage.prototype.level = function()
 {
   return this.priority.charAt( 1 );
 };
