@@ -25,7 +25,7 @@ var Parser = function Parser()
 Parser.prototype.rfc3164 = function( input )
 {
   var self = this;
-  var results = rfc3164_re.exec( input );
+  var results = self.rfc3164_re.exec( input );
   if( results == null )
   {
     throw new Error( "Failed to parse" );
