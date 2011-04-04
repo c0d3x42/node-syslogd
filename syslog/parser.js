@@ -8,6 +8,8 @@ function SyslogMessage( options )
   this.host = options[3] || "";
   this.msg = options[4];
 
+  this.year = new Date().getUTCFullYear();
+
 };
 
 SyslogMessage.prototype.message = function()
@@ -32,7 +34,12 @@ SyslogMessage.prototype.time = function()
 
 SyslogMessage.prototype.date = function()
 {
-  return Date.parse( this.time );
+
+  var d = new Date( this.time );
+  d.setUTCFullYear( this.year );
+  console.log( "Date: " + inspect( d ) );
+  return d;
+
 };
 
 

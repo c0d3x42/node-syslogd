@@ -1,6 +1,6 @@
 
 var server = require( './server' );
-//var parser = require(' ./parser' );
+var inspect = require( 'sys' ).inspect;
 
 function started_cb()
 {
@@ -11,7 +11,7 @@ var Syslog = function Syslog()
 {
   server.start( { message:function( msg )
   {
-
+    console.log( "RECV msg: " + inspect( msg ) );
   } }, started_cb );
 };
 
