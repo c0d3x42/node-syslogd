@@ -20,7 +20,7 @@ Server.prototype.start = function( args, started_cb )
 
   srv.on( 'message', function( msg, rinfo )
   {
-    var parsed = parser.rfc3164( msg );
+    var parsed = parser.parseit( msg );
     console.log( "Parsed: " + inspect( parsed ) );
     console.log( "received message: " + parsed.message() );
     args.message( msg );

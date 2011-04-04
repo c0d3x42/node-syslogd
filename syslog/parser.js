@@ -1,6 +1,5 @@
 var inspect = require( 'sys' ).inspect;
 
-var rfc3164_re = /<(\d{1,3})>[\d{1,}: \*]*((?:[JFMASONDjfmasond]\w\w) {1,2}(?:\d+)(?: \d{4})* (?:\d{2}:\d{2}:\d{2}[\.\d{1,3}]*)(?: [A-Z]{1,3})*)?:*\s*(?:((?:[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3})|(?:[a-zA-Z\-]+)) )?(.*)/;
 
 function SyslogMessage( options )
 {
@@ -17,8 +16,15 @@ SyslogMessage.prototype.message = function()
 }
 
 
-module.exports.rfc3164 = function( input )
+var Parser = function Parser()
 {
+  this.rfc3164_re = /<(\d{1,3})>[\d{1,}: \*]*((?:[JFMASONDjfmasond]\w\w) {1,2}(?:\d+)(?: \d{4})* (?:\d{2}:\d{2}:\d{2}[\.\d{1,3}]*)(?: [A-Z]{1,3})*)?:*\s*(?:((?:[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3})|(?:[a-zA-Z\-]+)) )?(.*)/;
+  this.default_parser = this.rfc3164;
+};
+
+Parser.prototype.rfc3164 = function( input )
+{
+  var self = this;
   var results = rfc3164_re.exec( input );
   if( results == null )
   {
@@ -26,3 +32,12 @@ module.exports.rfc3164 = function( input )
   }
   return( new SyslogMessage( results ) );
 };
+
+
+Parser.prototype.parseit = function( input )
+{
+  var self = this;
+  return self.default_parser( input );
+};
+
+module.exports = new Parser();
